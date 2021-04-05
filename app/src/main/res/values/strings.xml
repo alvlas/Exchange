@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Exchange</string>
+    <string name="et_main_input_hint">Type the value</string>
+    <string name="b_test_text">Test</string>
+</resources>
