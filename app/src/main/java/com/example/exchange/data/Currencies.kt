@@ -1,4 +1,4 @@
-package com.example.exchange
+package com.example.exchange.data
 
 enum class Currencies {
 //    EUR,

@@ -1,13 +1,12 @@
 package com.example.exchange.utils
 
 import android.util.Log
-import com.example.exchange.Currencies
-import com.example.exchange.CurrencyRates
-import com.example.exchange.CurrencyRatesAPI
+import com.example.exchange.data.Currencies
+import com.example.exchange.data.CurrencyRates
+import com.example.exchange.api.CurrencyRatesAPI
 import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -15,17 +14,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.collections.HashMap
 
-/**
- * This function returns an prepared Observable
- */
-
 class NetworkConnection {
     private val TAG = "NetworkUtils"
     private val rates: HashMap<String, Double> = HashMap()
 
     fun getResponseRetrofit(): HashMap<String, Double> {
         val currencies = enumValues<Currencies>()
-        val token = "2d2732b32c912cb202ef2feb76ec197e"
+//        val token = "2d2732b32c912cb202ef2feb76ec197e"
 
         val retrofit = Retrofit.Builder()
                 .baseUrl("http://api.exchangeratesapi.io/v1/")
@@ -66,6 +61,10 @@ class NetworkConnection {
         return rates
     }
 
+    /**
+     * This function returns an prepared Observable
+     */
+
     fun getResponseRXJava(): HashMap<String, Double> {
         val link = "https://api.exchangeratesapi.io/latest"
         val o = createRequest(link)
@@ -83,9 +82,8 @@ class NetworkConnection {
             Log.i(TAG, "responseOfConnection: no")
         })
 
-        // Add the base "EUR" for further calculation
+        // Add the base "EUR" for further calculation. The base is always "EUR"
         rates.put("EUR", 1.0)
-
 
         for (i in rates) {
             Log.i(TAG, "getResponse: ${i.key} : ${i.value} ***")

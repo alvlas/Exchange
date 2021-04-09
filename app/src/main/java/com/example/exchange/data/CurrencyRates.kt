@@ -1,4 +1,4 @@
-package com.example.exchange
+package com.example.exchange.data
 
 import com.google.gson.annotations.SerializedName
 
