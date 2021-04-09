@@ -21,8 +21,7 @@ class CurrencyViewModel(application: Application): AndroidViewModel(application)
         chosenCurrencyLiveDataValue.value = "0.0"
     }
 
-    fun responseOfConnection(): java.util.HashMap<String, Double> {
-//        rates = NetworkConnection().getResponseRXJava()
+    private fun responseOfConnection(): java.util.HashMap<String, Double> {
         currenciesRatesLiveData.value = NetworkConnection().getResponseRetrofit()
         return currenciesRatesLiveData.value!!
     }
@@ -33,13 +32,6 @@ class CurrencyViewModel(application: Application): AndroidViewModel(application)
             val valueOfChosenCurrencyFrom = currenciesRatesLiveData.value!![chosenCurrencyLiveDataFrom.value]
             val valueOfChosenCurrencyTo = currenciesRatesLiveData.value!![chosenCurrencyLiveDataTo.value]
             val chosenValue = chosenCurrencyLiveDataValue.value!!.toDouble()
-
-            Log.i(TAG, "calculation: ${chosenCurrencyLiveDataValue.value!!}")
-            Log.i(TAG, "calculation: ${currenciesRatesLiveData.value!![chosenCurrencyLiveDataFrom.value]}")
-            Log.i(TAG, "calculation: ${currenciesRatesLiveData.value!![chosenCurrencyLiveDataTo.value]}")
-            Log.i(TAG, "calculation: ${round(
-                chosenValue / valueOfChosenCurrencyFrom!! * valueOfChosenCurrencyTo!!
-                    * 100) / 100}")
 
             return "${round(
                 chosenValue / valueOfChosenCurrencyFrom!! * valueOfChosenCurrencyTo!!

@@ -20,14 +20,13 @@ class NetworkConnection {
 
     fun getResponseRetrofit(): HashMap<String, Double> {
         val currencies = enumValues<Currencies>()
-//        val token = "2d2732b32c912cb202ef2feb76ec197e"
+//        val token = "2d2732b32c912cb202ef2feb76ec197e" old
 
         val retrofit = Retrofit.Builder()
                 .baseUrl("http://api.exchangeratesapi.io/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         val currencyRatesAPI = retrofit.create(CurrencyRatesAPI::class.java)
-//        val currencyRatesResponse = currencyRatesAPI.getRates(currencies)
         val currencyRatesResponse = currencyRatesAPI.getAllRates()
         Log.i(TAG, "getResponseRetrofit: ${currencyRatesResponse.request().url}")
 
@@ -37,11 +36,9 @@ class NetworkConnection {
                     Log.i(TAG, "onResponse: Ok!")
                     val ratesMap = response.body()?.rates!!
                     for (pair in ratesMap.entries) {
-                        Log.i(TAG, "onResponse: ${pair.key} : ${pair.value}")
+//                        Log.i(TAG, "onResponse: ${pair.key} : ${pair.value}")
                         rates[pair.key] = pair.value
-//                        showCurrency(pair.key, pair.value)
                     }
-//                    rates["EUR"] = 1.0
                 } else {
                     Log.i(TAG, "onResponse: response.isSuccessful = false // ${response.code()}")
                 }
@@ -62,9 +59,9 @@ class NetworkConnection {
     }
 
     /**
+     * not in use for now
      * This function returns an prepared Observable
      */
-
     fun getResponseRXJava(): HashMap<String, Double> {
         val link = "https://api.exchangeratesapi.io/latest"
         val o = createRequest(link)
@@ -97,6 +94,7 @@ class Feed(
 )
 
 /*
+old
 {
 "rates":
     {

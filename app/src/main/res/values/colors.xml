@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="currency_item_background">#C0E9FF</color>
+    <color name="selected_item_background">#81FFCC</color>
 
 </resources>
