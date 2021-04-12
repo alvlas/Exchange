@@ -21,9 +21,8 @@ class CurrencyViewModel(application: Application): AndroidViewModel(application)
         chosenCurrencyLiveDataValue.value = "0.0"
     }
 
-    private fun responseOfConnection(): java.util.HashMap<String, Double> {
-        currenciesRatesLiveData.value = NetworkConnection().getResponseRetrofit()
-        return currenciesRatesLiveData.value!!
+    private fun responseOfConnection() {
+        currenciesRatesLiveData.value = NetworkConnection().getResponse()
     }
 
     fun calculation(): String {

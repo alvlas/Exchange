@@ -3,18 +3,17 @@ package com.example.exchange.view
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.exchange.R
+import com.example.exchange.data.Currencies
 import com.example.exchange.viewmodel.CurrencyViewModel
 
 
@@ -46,9 +45,9 @@ class MainActivity : AppCompatActivity() {
             showResult()
         }
 
-        val currencyArray: Array<String> = arrayOf("EUR", "USD", "RUB", "GBP", "CHF", "CNY")
-        showCurrencyPanel(currencyArray, llMainCurrencyPanelFrom, "from")
-        showCurrencyPanel(currencyArray, llMainCurrencyPanelTo, "to")
+        val currencyTargetValues: List<String> = enumValues<Currencies>().map { it.name }
+        showCurrencyPanel(currencyTargetValues, llMainCurrencyPanelFrom, "from")
+        showCurrencyPanel(currencyTargetValues, llMainCurrencyPanelTo, "to")
 
         etMainInput.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -67,9 +66,9 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun showCurrencyPanel(array: Array<String>, llCurrencyPanel: ViewGroup, direction: String) {
+    private fun showCurrencyPanel(values: List<String>, llCurrencyPanel: ViewGroup, direction: String) {
         val inflater = layoutInflater
-        for (currency in array) {
+        for (currency in values) {
             val view = inflater.inflate(R.layout.currency_item, llCurrencyPanel, false)
             val tvItem = view.findViewById<TextView>(R.id.currency_item)
             tvItem.text = currency
