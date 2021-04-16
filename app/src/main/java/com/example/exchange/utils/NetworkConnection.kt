@@ -23,6 +23,7 @@ class NetworkConnection {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build()
+        
         val currenciesRatesAPI = retrofit.create(CurrencyRatesAPI::class.java)
         currenciesRatesAPI.getAllRates()
                 .subscribeOn(Schedulers.io())

@@ -20,5 +20,6 @@ interface CurrencyRatesAPI {
 
 }
 /**
- * https://api.exchangeratesapi.io/latest?symbols=USD,GBP
+ * https://manage.exchangeratesapi.io/dashboard
+ * http://api.exchangeratesapi.io/v1/latest?access_key=778de779b485b2815141bc2d5a53b135&symbols=USD,AUD,CAD,PLN,MXN&format=1
  */

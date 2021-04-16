@@ -87,12 +87,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showResult() {
-        val resultOfCalculation: String = currencyViewModel.calculation()
-        if (resultOfCalculation == "null") {
-            // handle it
-        } else {
-            tvMainResult.text = resultOfCalculation
-        }
+        tvMainResult.text = currencyViewModel.calculation()
+//        val resultOfCalculation: String = currencyViewModel.calculation()
+//        if (resultOfCalculation == "null") {
+//             handle it
+//        } else {
+//            tvMainResult.text = resultOfCalculation
+//        }
     }
 
     override fun onStart() {
